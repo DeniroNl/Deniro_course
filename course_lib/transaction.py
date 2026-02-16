@@ -18,14 +18,12 @@ class Transaction:
 
     @staticmethod
     def _validate_date(date_str: str) -> date:
-        """Защита: проверка корректности формата даты."""
         try:
             return datetime.strptime(date_str, "%Y-%m-%d").date()
         except ValueError:
             raise ValueError("Ошибка: Неверный формат даты. Используйте ГГГГ-ММ-ДД (например, 2023-10-05).")
 
     def get_info(self) -> str:
-        """Возвращает строковое представление транзакции."""
         type_name = self.__class__.__name__
         sign = "+" if self.amount > 0 else ""
         return f"[{type_name}] {self.date}\n{sign}{self.amount} руб\n{self.description}"
